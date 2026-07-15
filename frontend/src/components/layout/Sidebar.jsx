@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   LayoutDashboard,
-  Upload,
+  FolderOpen,
   Search,
   FileText,
   Settings,
@@ -10,11 +10,13 @@ import {
 export default function Sidebar() {
   return (
     <aside className="w-64 bg-slate-900 border-r border-slate-800 min-h-screen p-5">
+
       <h1 className="text-2xl font-bold text-cyan-400 mb-10">
         ForensiQ
       </h1>
 
       <nav className="space-y-3">
+
         <Link
           to="/"
           className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
@@ -24,11 +26,11 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          to="/upload"
+          to="/cases"
           className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
         >
-          <Upload size={20} />
-          Upload
+          <FolderOpen size={20} />
+          Investigations
         </Link>
 
         <Link
@@ -36,7 +38,7 @@ export default function Sidebar() {
           className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
         >
           <Search size={20} />
-          Analysis
+          AI Analysis
         </Link>
 
         <Link
@@ -54,7 +56,9 @@ export default function Sidebar() {
           <Settings size={20} />
           Settings
         </Link>
+
       </nav>
+
     </aside>
   );
 }

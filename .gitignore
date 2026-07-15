@@ -1,0 +1,59 @@
+# =====================
+# FRONTEND (React/Vite)
+# =====================
+
+frontend/node_modules/
+frontend/dist/
+
+frontend/.vite/
+
+frontend/.env
+frontend/.env.local
+
+
+
+# =====================
+# BACKEND (FastAPI)
+# =====================
+
+backend/venv/
+
+backend/__pycache__/
+backend/**/*.pyc
+
+backend/.env
+
+
+
+# =====================
+# Python Cache
+# =====================
+
+__pycache__/
+*.py[cod]
+
+
+
+# =====================
+# IDE Files
+# =====================
+
+.vscode/
+.idea/
+
+
+
+# =====================
+# OS Files
+# =====================
+
+.DS_Store
+Thumbs.db
+
+
+
+# =====================
+# Logs
+# =====================
+
+*.log
