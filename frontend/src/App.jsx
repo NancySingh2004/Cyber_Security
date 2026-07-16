@@ -8,30 +8,64 @@ import Settings from "./pages/Settings";
 import Cases from "./pages/Cases";
 import CaseWorkspace from "./pages/CaseWorkspace";
 
+import { ThemeProvider } from "./context/ThemeContext";
+
+
 function App() {
+
   return (
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
 
-      <Route path="/cases" element={<Cases />} />
+    <ThemeProvider>
 
-      {/* Investigation Workspace */}
-      <Route
-        path="/cases/:caseId"
-        element={<CaseWorkspace />}
-      />
+      <Routes>
 
-      {/* Upload evidence for a case */}
-      <Route
-        path="/upload/:caseId"
-        element={<Upload />}
-      />
+        <Route 
+          path="/" 
+          element={<Dashboard />} 
+        />
 
-      <Route path="/analysis" element={<Analysis />} />
-      <Route path="/reports" element={<Reports />} />
-      <Route path="/settings" element={<Settings />} />
-    </Routes>
+        <Route 
+          path="/cases" 
+          element={<Cases />} 
+        />
+
+
+        <Route
+          path="/cases/:caseId"
+          element={<CaseWorkspace />}
+        />
+
+
+        <Route
+          path="/upload/:caseId"
+          element={<Upload />}
+        />
+
+
+        <Route 
+          path="/analysis" 
+          element={<Analysis />} 
+        />
+
+
+        <Route 
+          path="/reports" 
+          element={<Reports />} 
+        />
+
+
+        <Route 
+          path="/settings" 
+          element={<Settings />} 
+        />
+
+      </Routes>
+
+    </ThemeProvider>
+
   );
+
 }
+
 
 export default App;

@@ -5,10 +5,14 @@ from fastapi.staticfiles import StaticFiles
 from app.routes.cases import router as case_router
 from app.routes.evidence import router as evidence_router
 from app.routes.analysis import router as analysis_router
+from app.routes.reports import router as reports_router
 
 from app.database.database import Base, engine
 from app.models.case import Case
 from app.models.evidence import Evidence
+from app.models.settings import Settings
+from app.routes.settings import router as settings_router
+from app.models.report import Report
 
 Base.metadata.create_all(bind=engine)
 
@@ -39,7 +43,8 @@ app.add_middleware(
 app.include_router(case_router)
 app.include_router(evidence_router)
 app.include_router(analysis_router)
-
+app.include_router(settings_router)
+app.include_router(reports_router)
 
 @app.get("/")
 def root():

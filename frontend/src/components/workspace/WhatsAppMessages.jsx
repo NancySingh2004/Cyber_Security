@@ -1,69 +1,213 @@
+import { useMemo, useState } from "react";
+import { Search, MessageCircle } from "lucide-react";
+
 export default function WhatsAppMessages({ whatsapp }) {
+  if (!whatsapp) return null;
 
-    if (!whatsapp?.messages?.length)
-        return null;
+  const chats = whatsapp.chat_list || [];
+  const messages = whatsapp.messages || [];
 
-    return (
+  const [selectedChat, setSelectedChat] = useState(
+    chats.length > 0 ? chats[0].chat_id : null
+  );
 
-        <div className="bg-[#0a0c10] border border-slate-800 rounded-xl p-5">
+  const [searchTerm, setSearchTerm] = useState("");
 
-            <h3 className="text-green-400 text-sm font-bold uppercase tracking-wider mb-5">
-                Conversation Timeline
-            </h3>
+  const filteredMessages = useMemo(() => {
+    return messages.filter((msg) => {
+      const sameChat = msg.chat_id === selectedChat;
 
-            <div className="space-y-4 max-h-[500px] overflow-y-auto">
+      const matchesSearch = (msg.text || "")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
 
-                {whatsapp.messages.map((msg, index) => (
+      return sameChat && matchesSearch;
+    });
+  }, [messages, selectedChat, searchTerm]);
 
-                    <div
-                        key={index}
-                        className={`flex ${
-                            msg.from_me
-                                ? "justify-end"
-                                : "justify-start"
-                        }`}
-                    >
+  return (
+    <div className="bg-[#0a0c10] border border-slate-800 rounded-xl overflow-hidden">
 
-                        <div
-                            className={`max-w-[75%] rounded-xl px-4 py-3 ${
-                                msg.from_me
-                                    ? "bg-green-700"
-                                    : "bg-slate-800"
-                            }`}
-                        >
+      <div className="grid grid-cols-12 h-[650px]">
 
-                            <p className="text-white whitespace-pre-wrap">
+        {/* ---------------- LEFT PANEL ---------------- */}
 
-                                {msg.text || "(No Text)"}
+        <div className="col-span-4 border-r border-slate-800 flex flex-col">
 
-                            </p>
+          <div className="p-4 border-b border-slate-800">
 
-                            <div className="text-[10px] text-slate-300 mt-2 flex justify-between gap-4">
+            <h2 className="text-green-400 font-bold uppercase tracking-wider">
+              WhatsApp Chats
+            </h2>
 
-                                <span>
+            <p className="text-xs text-slate-500 mt-1">
+              {chats.length} Chats Found
+            </p>
 
-                                    Chat #{msg.chat_id}
+          </div>
 
-                                </span>
+          <div className="overflow-y-auto flex-1">
 
-                                <span>
+            {chats.map((chat) => (
 
-                                    {msg.timestamp}
+              <button
+                key={chat.chat_id}
+                onClick={() => setSelectedChat(chat.chat_id)}
+                className={`w-full text-left px-4 py-4 border-b border-slate-800 transition
 
-                                </span>
+                ${
+                  selectedChat === chat.chat_id
+                    ? "bg-slate-900"
+                    : "hover:bg-slate-900"
+                }`}
+              >
 
-                            </div>
+                <div className="flex items-center gap-3">
 
-                        </div>
+                  <MessageCircle
+                    size={18}
+                    className="text-green-400"
+                  />
 
-                    </div>
+                  <div>
 
-                ))}
+                    <p className="text-white text-sm break-all">
 
-            </div>
+                      {chat.jid}
+
+                    </p>
+
+                    <p className="text-xs text-slate-500">
+
+                      Chat ID : {chat.chat_id}
+
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </button>
+
+            ))}
+
+          </div>
 
         </div>
 
-    );
+        {/* ---------------- RIGHT PANEL ---------------- */}
 
+        <div className="col-span-8 flex flex-col">
+
+          {/* Header */}
+
+          <div className="p-4 border-b border-slate-800">
+
+            <h2 className="text-green-400 font-bold uppercase tracking-wider mb-4">
+
+              Conversation
+
+            </h2>
+
+            <div className="relative">
+
+              <Search
+                size={16}
+                className="absolute left-3 top-3 text-slate-500"
+              />
+
+              <input
+                type="text"
+                placeholder="Search messages..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg py-2 pl-10 pr-4 text-white focus:outline-none focus:border-green-500"
+              />
+
+            </div>
+
+          </div>
+
+          {/* Messages */}
+
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-[#111318]">
+
+            {filteredMessages.length === 0 ? (
+
+              <div className="flex flex-col items-center justify-center h-full text-slate-500">
+
+                <MessageCircle
+                  size={50}
+                  className="opacity-30 mb-3"
+                />
+
+                <p>
+
+                  No Messages Found
+
+                </p>
+
+              </div>
+
+            ) : (
+
+              filteredMessages.map((msg, index) => (
+
+                <div
+                  key={index}
+                  className={`flex ${
+                    msg.from_me
+                      ? "justify-end"
+                      : "justify-start"
+                  }`}
+                >
+
+                  <div
+                    className={`max-w-[70%] px-4 py-3 rounded-2xl shadow
+
+                    ${
+                      msg.from_me
+                        ? "bg-green-700 rounded-br-md"
+                        : "bg-slate-800 rounded-bl-md"
+                    }`}
+                  >
+
+                    <p className="text-white whitespace-pre-wrap break-words">
+
+                      {msg.text || "(No Text)"}
+
+                    </p>
+
+                    <div className="flex justify-between mt-2 text-[10px] text-slate-300 gap-4">
+
+                      <span>
+
+                        Chat #{msg.chat_id}
+
+                      </span>
+
+                      <span>
+
+                        {msg.timestamp}
+
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ))
+
+            )}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
 }
