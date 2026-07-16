@@ -3,6 +3,7 @@ import { analyzeEvidence } from "../../services/evidenceService";
 import GeneralCard from "./GeneralCard";
 import SQLiteCard from "./SQLiteCard";
 import WhatsAppCard from "./WhatsAppCard";
+import WhatsAppMessages from "./WhatsAppMessages";
 import { useState } from "react";
 
 const API_URL = "http://127.0.0.1:8000";
@@ -111,6 +112,13 @@ export default function EvidenceDetails({ evidence }) {
             whatsapp={analysis.analysis.whatsapp_details}
         />
     )}
+  {analysis.analysis.whatsapp_details && (
+
+    <WhatsAppMessages
+        whatsapp={analysis.analysis.whatsapp_details}
+    />
+
+)}
 
 </div>
 
