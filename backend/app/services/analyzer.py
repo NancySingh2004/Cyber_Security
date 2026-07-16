@@ -7,6 +7,7 @@ from app.services.zip_analyzer import analyze_zip
 from app.services.apk_analyzer import analyze_apk
 from app.services.exif_analyzer import analyze_exif
 from app.services.sqlite_analyzer import analyze_sqlite
+from app.services.whatsapp_analyzer import analyze_whatsapp
 
 
 
@@ -147,6 +148,10 @@ def analyze_file(file_path):
 
         result["analysis"]["database"] = (
             analyze_sqlite(file_path)
+        )
+
+        result["analysis"]["whatsapp_details"] = (
+            analyze_whatsapp(file_path)
         )
 
 

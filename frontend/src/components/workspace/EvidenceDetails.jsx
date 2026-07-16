@@ -1,5 +1,8 @@
 import { Search, FileText, Hash, ShieldCheck, Activity } from "lucide-react";
 import { analyzeEvidence } from "../../services/evidenceService";
+import GeneralCard from "./GeneralCard";
+import SQLiteCard from "./SQLiteCard";
+import WhatsAppCard from "./WhatsAppCard";
 import { useState } from "react";
 
 const API_URL = "http://127.0.0.1:8000";
@@ -85,15 +88,34 @@ export default function EvidenceDetails({ evidence }) {
 
       {/* Analysis Report Output */}
       {analysis && (
-        <div className="border-t border-slate-800 pt-8">
-          <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-            <ShieldCheck size={14} className="text-cyan-500" /> Forensic Output
-          </h3>
-          <pre className="bg-black border border-slate-800 rounded-lg p-4 overflow-auto text-emerald-500 font-mono text-[11px] leading-relaxed">
-            {JSON.stringify(analysis.analysis, null, 2)}
-          </pre>
-        </div>
-      )}
+  <div className="border-t border-slate-800 pt-8">
+
+    <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+      <ShieldCheck size={14} className="text-cyan-500" />
+      Forensic Analysis
+    </h3>
+
+    <div className="space-y-6">
+
+  <GeneralCard
+    analysis={analysis.analysis}
+  />
+
+  {analysis.analysis.database && (
+    <SQLiteCard
+      database={analysis.analysis.database}
+    />
+  )}
+  {analysis.analysis.whatsapp_details && (
+        <WhatsAppCard
+            whatsapp={analysis.analysis.whatsapp_details}
+        />
+    )}
+
+</div>
+
+  </div>
+)}
     </div>
   );
 }
