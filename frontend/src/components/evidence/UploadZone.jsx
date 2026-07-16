@@ -1,104 +1,54 @@
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, FolderOpen, AlertCircle } from "lucide-react";
 
-export default function UploadZone({
-  cases,
-  selectedCase,
-  setSelectedCase,
-  onSelectFiles,
-}) {
-
+export default function UploadZone({ cases, selectedCase, setSelectedCase, onSelectFiles }) {
   const handleChange = (e) => {
-
-    const selectedFiles = Array.from(
-      e.target.files
-    );
-
-    if (selectedFiles.length > 0) {
-      onSelectFiles(selectedFiles);
-    }
-
+    const selectedFiles = Array.from(e.target.files);
+    if (selectedFiles.length > 0) onSelectFiles(selectedFiles);
   };
 
-
   return (
+    <div className="relative group bg-[#0f1117] border-2 border-dashed border-slate-800 hover:border-cyan-500/50 rounded-xl p-12 transition-all duration-300">
+      
+      {/* Visual Decoration */}
+      <div className="absolute inset-0 bg-cyan-900/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity"></div>
 
-    <div className="bg-slate-900 border-2 border-dashed border-cyan-500 rounded-xl p-10">
-
-
-      <UploadCloud
-        size={60}
-        className="mx-auto text-cyan-400 mb-5"
-      />
-
-
-      <h2 className="text-2xl font-semibold text-center mb-2">
-        Import Mobile Evidence
-      </h2>
-
-
-      <p className="text-slate-400 text-center mb-6">
-        Supported:
-        SQLite • APK • Images • ZIP • JSON • CSV
-      </p>
-
-
-
-      {/* Show case selector only for general upload */}
-
-      {!selectedCase && (
-
-        <div className="mb-6">
-
-          <label className="block mb-2 font-medium">
-            Select Investigation Case
-          </label>
-
-
-          <select
-            value={selectedCase}
-            onChange={(e) =>
-              setSelectedCase(e.target.value)
-            }
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg p-3"
-          >
-
-            <option value="">
-              -- Select Case --
-            </option>
-
-
-            {cases.map((item) => (
-
-              <option
-                key={item.id}
-                value={item.id}
-              >
-                {item.title}
-              </option>
-
-            ))}
-
-
-          </select>
-
+      <div className="relative z-10 flex flex-col items-center">
+        <div className="p-4 bg-[#0a0c10] rounded-full border border-slate-800 mb-6 group-hover:scale-110 transition-transform">
+          <UploadCloud size={32} className="text-cyan-500" />
         </div>
 
-      )}
+        <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-2">
+          Evidence Ingestion Port
+        </h2>
+        <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-8 text-center max-w-sm">
+          Drag and drop forensic assets or select to begin. <br />
+          Supported: SQLite, APK, Images, ZIP, JSON, CSV
+        </p>
 
-
-
-      {/* Upload */}
-
-      <div className="text-center">
-
+        {!selectedCase && (
+          <div className="w-full max-w-md mb-6">
+            <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-2">
+              Select Investigation Target
+            </label>
+            <select
+              value={selectedCase}
+              onChange={(e) => setSelectedCase(e.target.value)}
+              className="w-full bg-[#0a0c10] border border-slate-800 text-slate-300 rounded-lg p-3 text-xs focus:ring-1 focus:ring-cyan-500 outline-none"
+            >
+              <option value="">-- NO TARGET SELECTED --</option>
+              {cases.map((item) => (
+                <option key={item.id} value={item.id}>{item.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <label
           htmlFor="evidence"
-          className="cursor-pointer inline-block bg-cyan-600 hover:bg-cyan-700 px-6 py-3 rounded-lg font-semibold"
+          className="cursor-pointer flex items-center gap-2 bg-slate-800 hover:bg-cyan-600 border border-slate-700 hover:border-cyan-500 px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all shadow-lg"
         >
-          Browse Evidence
+          <FolderOpen size={14} /> Browse Local Storage
         </label>
-
 
         <input
           id="evidence"
@@ -107,13 +57,7 @@ export default function UploadZone({
           hidden
           onChange={handleChange}
         />
-
-
       </div>
-
-
     </div>
-
   );
-
 }

@@ -3,6 +3,7 @@ import hashlib
 
 from PIL import Image
 
+from app.services.zip_analyzer import analyze_zip
 from app.services.apk_analyzer import analyze_apk
 from app.services.exif_analyzer import analyze_exif
 from app.services.sqlite_analyzer import analyze_sqlite
@@ -141,18 +142,12 @@ def analyze_file(file_path):
     # SQLITE DATABASE
     # -------------------------
 
-    elif extension == ".db":
+    elif extension in [".db",".sqlite", ".sqlite3"]:
+        result["file_type"] = "SQLite Database"
 
-
-        result["file_type"] = (
-            "SQLite Database"
-        )
-        result["analysis"]["sqlite_detail"] = (
+        result["analysis"]["database"] = (
             analyze_sqlite(file_path)
         )
-
-
-
 
 
     # -------------------------
@@ -182,8 +177,10 @@ def analyze_file(file_path):
     elif extension == ".zip":
 
 
-        result["file_type"] = (
-            "ZIP Archive"
+        result["file_type"] = "ZIP Archive"
+
+        result["analysis"]["zip_details"] = (
+            analyze_zip(file_path)
         )
 
 

@@ -2,133 +2,63 @@ import sqlite3
 import os
 
 
-
 def analyze_sqlite(file_path):
 
     result = {
-
         "database_name": os.path.basename(file_path),
-
-        "tables": [],
-
-        "table_count": 0,
-
-        "database_size_kb": round(
-            os.path.getsize(file_path) / 1024,
-            2
-        ),
-
-        "error": None
-
+        "sqlite_version": "",
+        "total_tables": 0,
+        "tables": []
     }
-
 
     try:
 
-        connection = sqlite3.connect(
-            file_path
-        )
+        conn = sqlite3.connect(file_path)
+        cursor = conn.cursor()
 
-        cursor = connection.cursor()
+        # SQLite Version
+        cursor.execute("SELECT sqlite_version();")
+        result["sqlite_version"] = cursor.fetchone()[0]
 
-
-
-        # SQLite version
-
-        cursor.execute(
-            "SELECT sqlite_version();"
-        )
-
-        result["sqlite_version"] = (
-            cursor.fetchone()[0]
-        )
-
-
-
-        # Get tables
-
-        cursor.execute(
-            """
-            SELECT name 
+        # All Tables
+        cursor.execute("""
+            SELECT name
             FROM sqlite_master
-            WHERE type='table';
-            """
-        )
-
+            WHERE type='table'
+            ORDER BY name;
+        """)
 
         tables = cursor.fetchall()
 
-
+        result["total_tables"] = len(tables)
 
         for table in tables:
 
             table_name = table[0]
 
+            try:
 
-            table_info = {
+                cursor.execute(
+                    f"SELECT COUNT(*) FROM '{table_name}'"
+                )
 
-                "name": table_name,
+                rows = cursor.fetchone()[0]
 
-                "columns": [],
+            except Exception:
 
-                "row_count": 0
+                rows = "Unknown"
 
-            }
+            result["tables"].append({
 
+                "table_name": table_name,
+                "rows": rows
 
+            })
 
-            # Columns
-
-            cursor.execute(
-                f"PRAGMA table_info({table_name})"
-            )
-
-
-            columns = cursor.fetchall()
-
-
-            table_info["columns"] = [
-
-                column[1]
-
-                for column in columns
-
-            ]
-
-
-
-            # Row count
-
-            cursor.execute(
-                f"SELECT COUNT(*) FROM {table_name}"
-            )
-
-
-            table_info["row_count"] = (
-                cursor.fetchone()[0]
-            )
-
-
-
-            result["tables"].append(
-                table_info
-            )
-
-
-
-        result["table_count"] = len(
-            result["tables"]
-        )
-
-
-        connection.close()
-
-
+        conn.close()
 
     except Exception as e:
 
         result["error"] = str(e)
-
-
 
     return result
