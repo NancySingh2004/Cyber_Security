@@ -23,6 +23,15 @@ export default function Reports() {
 
   const [loading, setLoading] = useState(true);
 
+  const [message, setMessage] = useState("");
+  const [cases,setCases] = useState([]);
+
+const [evidence,setEvidence] = useState([]);
+
+const [selectedCase,setSelectedCase] = useState("");
+
+const [selectedEvidence,setSelectedEvidence] = useState("");
+
 
 
   // Fetch Reports
@@ -35,9 +44,12 @@ export default function Reports() {
         `${API_URL}/`
       );
 
+
       const data = await res.json();
 
+
       setReports(data);
+
 
     }
 
@@ -57,16 +69,82 @@ export default function Reports() {
     }
 
   };
+const fetchCases = async()=>{
 
+    try{
+
+        const res = await fetch(
+            "http://127.0.0.1:8000/cases/"
+        );
+
+
+        const data = await res.json();
+
+        setCases(data);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+};
+const fetchEvidence = async(caseId)=>{
+
+
+    try{
+
+
+        const res = await fetch(
+
+        `http://127.0.0.1:8000/evidence/case/${caseId}`
+
+        );
+
+
+        const data = await res.json();
+
+
+        setEvidence(data);
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+
+};
 
 
   useEffect(()=>{
 
     fetchReports();
+    fetchCases();
 
   },[]);
 
+ const handleCaseChange=(e)=>{
 
+
+    const id=e.target.value;
+
+
+    setSelectedCase(id);
+
+
+    setSelectedEvidence("");
+
+
+    fetchEvidence(id);
+
+
+};
 
 
 
@@ -74,45 +152,100 @@ export default function Reports() {
 
   const generateReport = async()=>{
 
+    if(!selectedCase || !selectedEvidence){
 
-    const data = {
+    alert(
+      "Please select case and evidence"
+    );
 
-      case_name:"Mobile Theft Investigation",
+    return;
 
-      evidence_name:"msgstore.db",
+  }
 
-      report_type:"PDF"
+    
 
-    };
+
+   const selectedCaseData =
+cases.find(
+(c)=>c.id == selectedCase
+);
+
+
+const selectedEvidenceData =
+evidence.find(
+(e)=>e.id == selectedEvidence
+);
+
+
+
+const data = {
+
+case_name:selectedCaseData.title,
+
+evidence_name:selectedEvidenceData.filename
+
+};
 
 
 
     try{
 
+
       await fetch(
+
         `${API_URL}/`,
+
         {
 
           method:"POST",
 
           headers:{
-            "Content-Type":"application/json"
+
+            "Content-Type":
+            "application/json"
+
           },
+
 
           body:JSON.stringify(data)
 
         }
+
       );
+
+
+
+      setMessage(
+        "Report generated successfully"
+      );
+
+
+
+      setTimeout(()=>{
+
+        setMessage("");
+
+      },3000);
+
 
 
       fetchReports();
 
 
+
     }
+
 
     catch(error){
 
+
       console.error(error);
+
+
+      setMessage(
+        "Report generation failed"
+      );
+
 
     }
 
@@ -129,20 +262,40 @@ export default function Reports() {
   const deleteReport = async(id)=>{
 
 
+    const confirmDelete =
+      window.confirm(
+        "Delete this report?"
+      );
+
+
+    if(!confirmDelete)
+      return;
+
+
+
     try{
 
+
       await fetch(
+
         `${API_URL}/${id}`,
+
         {
+
           method:"DELETE"
+
         }
+
       );
+
 
 
       fetchReports();
 
 
+
     }
+
 
     catch(error){
 
@@ -159,12 +312,18 @@ export default function Reports() {
 
 
   const filteredReports =
+
     reports.filter((report)=>
 
+
       report.case_name
-      .toLowerCase()
+
+      ?.toLowerCase()
+
       .includes(
+
         search.toLowerCase()
+
       )
 
     );
@@ -175,6 +334,7 @@ export default function Reports() {
 
 
   return (
+
 
     <MainLayout>
 
@@ -190,41 +350,152 @@ export default function Reports() {
 
           <div>
 
+
             <h1 className="
-              text-3xl
-              font-bold
-              text-slate-900
-              dark:text-white
+            text-3xl
+            font-bold
+            text-slate-900
+            dark:text-white
             ">
+
               Reports
+
             </h1>
 
 
-            <p className="text-slate-500 mt-1">
+
+            <p className="
+            text-slate-500
+            mt-1
+            ">
+
               Generate and manage forensic reports.
+
             </p>
 
 
           </div>
 
+          <div className="flex gap-4">
 
 
+<select
+
+value={selectedCase}
+
+onChange={handleCaseChange}
+
+className="
+bg-white
+dark:bg-slate-900
+border
+rounded-xl
+px-4
+py-3
+"
+
+>
+
+<option value="">
+
+Select Case
+
+</option>
+
+
+{
+cases.map((item)=>(
+
+<option
+
+key={item.id}
+
+value={item.id}
+
+>
+
+{item.title}
+
+</option>
+
+))
+
+}
+
+
+</select>
+
+
+
+
+<select
+
+value={selectedEvidence}
+
+onChange={(e)=>
+setSelectedEvidence(e.target.value)
+}
+
+className="
+bg-white
+dark:bg-slate-900
+border
+rounded-xl
+px-4
+py-3
+"
+
+>
+
+<option value="">
+
+Select Evidence
+
+</option>
+
+
+{
+evidence.map((item)=>(
+
+<option
+
+key={item.id}
+
+value={item.id}
+
+>
+
+{item.filename}
+
+</option>
+
+
+))
+
+}
+
+
+</select>
+
+
+</div>
+       
 
           <button
 
-            onClick={generateReport}
+          onClick={generateReport}
 
-            className="
-            flex
-            items-center
-            gap-2
-            bg-cyan-600
-            hover:bg-cyan-700
-            text-white
-            px-5
-            py-3
-            rounded-xl
-            "
+          className="
+          flex
+          items-center
+          gap-2
+          bg-cyan-600
+          hover:bg-cyan-700
+          text-white
+          px-5
+          py-3
+          rounded-xl
+          "
 
           >
 
@@ -243,22 +514,46 @@ export default function Reports() {
 
 
 
+        {
+          message &&
+
+          <div className="
+          bg-emerald-500/10
+          text-emerald-500
+          border
+          border-emerald-500/20
+          rounded-xl
+          p-4
+          ">
+
+            {message}
+
+          </div>
+
+        }
+
+
+
+
+
+
 
         {/* Search */}
+
 
         <div className="relative">
 
 
           <Search
 
-            size={18}
+          size={18}
 
-            className="
-            absolute
-            left-4
-            top-3.5
-            text-slate-400
-            "
+          className="
+          absolute
+          left-4
+          top-3.5
+          text-slate-400
+          "
 
           />
 
@@ -266,34 +561,40 @@ export default function Reports() {
 
           <input
 
-            value={search}
 
-            onChange={(e)=>
-              setSearch(e.target.value)
-            }
+          value={search}
 
 
-            placeholder="Search reports..."
+          onChange={(e)=>
+            setSearch(
+              e.target.value
+            )
+          }
 
 
-            className="
-            w-full
-            pl-11
-            py-3
-            rounded-xl
-            border
-            border-slate-300
-            dark:border-slate-700
-            bg-white
-            dark:bg-slate-900
-            text-slate-900
-            dark:text-white
-            "
+          placeholder="Search reports..."
+
+
+          className="
+          w-full
+          pl-11
+          py-3
+          rounded-xl
+          border
+          border-slate-300
+          dark:border-slate-700
+          bg-white
+          dark:bg-slate-900
+          text-slate-900
+          dark:text-white
+          "
 
           />
 
 
         </div>
+
+
 
 
 
@@ -304,29 +605,33 @@ export default function Reports() {
         {/* Table */}
 
 
+
         <div className="
-          rounded-xl
-          overflow-hidden
-          border
-          border-slate-200
-          dark:border-slate-800
-          bg-white
-          dark:bg-slate-900
+        rounded-xl
+        overflow-hidden
+        border
+        border-slate-200
+        dark:border-slate-800
+        bg-white
+        dark:bg-slate-900
         ">
 
 
 
         {
-
           loading ?
 
           (
 
-            <div className="p-10 text-center text-slate-500">
+          <div className="
+          p-10
+          text-center
+          text-slate-500
+          ">
 
-              Loading reports...
+            Loading reports...
 
-            </div>
+          </div>
 
           )
 
@@ -337,227 +642,273 @@ export default function Reports() {
           <table className="w-full">
 
 
-            <thead className="
-              bg-slate-100
-              dark:bg-slate-800
-            ">
+          <thead className="
+          bg-slate-100
+          dark:bg-slate-800
+          ">
 
 
-              <tr>
+          <tr>
 
 
-                <th className="px-6 py-4 text-left">
-                  Case
-                </th>
+          <th className="px-6 py-4 text-left">
+          Case
+          </th>
 
 
-                <th className="px-6 py-4 text-left">
-                  Evidence
-                </th>
+          <th className="px-6 py-4 text-left">
+          Evidence
+          </th>
 
 
-                <th className="px-6 py-4 text-left">
-                  Type
-                </th>
+          <th className="px-6 py-4 text-left">
+          Type
+          </th>
 
 
-                <th className="px-6 py-4 text-left">
-                  Status
-                </th>
+          <th className="px-6 py-4 text-left">
+          Status
+          </th>
 
 
-                <th className="px-6 py-4 text-left">
-                  Date
-                </th>
+          <th className="px-6 py-4 text-left">
+          Date
+          </th>
 
 
-                <th className="px-6 py-4 text-center">
-                  Actions
-                </th>
+          <th className="px-6 py-4 text-center">
+          Actions
+          </th>
 
 
-              </tr>
+          </tr>
 
 
-            </thead>
+          </thead>
 
 
 
 
-            <tbody>
 
+          <tbody>
 
-            {
 
-              filteredReports.map((report)=>(
+          {
+          filteredReports.length === 0 &&
 
+          <tr>
 
-                <tr
+          <td
 
-                key={report.id}
+          colSpan="6"
 
-                className="
-                border-t
-                border-slate-200
-                dark:border-slate-800
-                "
+          className="
+          text-center
+          py-10
+          text-slate-500
+          "
 
-                >
+          >
 
+          No reports generated yet.
 
+          </td>
 
-                <td className="px-6 py-5">
 
-                  {report.case_name}
+          </tr>
 
-                </td>
+          }
 
 
 
 
-                <td className="px-6 py-5">
 
-                  {report.evidence_name}
+          {
+          filteredReports.map((report)=>(
 
-                </td>
 
+          <tr
 
+          key={report.id}
 
+          className="
+          border-t
+          border-slate-200
+          dark:border-slate-800
+          "
 
-                <td className="px-6 py-5">
+          >
 
-                  {report.report_type}
 
-                </td>
 
+          <td className="px-6 py-5">
 
+          {report.case_name}
 
+          </td>
 
 
-                <td className="px-6 py-5">
 
 
-                  <span className="
-                  px-3
-                  py-1
-                  rounded-full
-                  bg-emerald-500/10
-                  text-emerald-500
-                  text-xs
-                  ">
+          <td className="px-6 py-5">
 
-                    {report.status}
+          {report.evidence_name}
 
-                  </span>
+          </td>
 
 
-                </td>
 
 
+          <td className="px-6 py-5">
 
+          {report.report_type}
 
+          </td>
 
-                <td className="px-6 py-5">
 
-                  {
-                    new Date(
-                      report.created_at
-                    ).toLocaleDateString()
-                  }
 
-                </td>
 
+          <td className="px-6 py-5">
 
 
+          <span className="
+          px-3
+          py-1
+          rounded-full
+          bg-emerald-500/10
+          text-emerald-500
+          text-xs
+          ">
 
+          {report.status}
 
+          </span>
 
-                <td className="px-6 py-5">
 
+          </td>
 
-                  <div className="
-                  flex
-                  justify-center
-                  gap-3
-                  ">
 
 
 
-                  <button
 
-                  onClick={()=>window.open(
-                    `${API_URL}/view/${report.id}`,
-                    "_blank"
-                  )}
+          <td className="px-6 py-5">
 
-                  >
 
-                    <Eye
-                    size={18}
-                    className="text-cyan-500"
-                    />
+          {
+          new Date(
+            report.created_at
+          )
+          .toLocaleDateString()
 
-                  </button>
+          }
 
 
+          </td>
 
 
 
 
-                  <button
 
-                  onClick={()=>window.open(
-                    `${API_URL}/download/${report.id}`,
-                    "_blank"
-                  )}
 
-                  >
+          <td className="px-6 py-5">
 
-                    <Download
-                    size={18}
-                    className="text-emerald-500"
-                    />
 
-                  </button>
+          <div className="
+          flex
+          justify-center
+          gap-3
+          ">
 
 
+          <button
 
+          onClick={()=>window.open(
 
+            `${API_URL}/view/${report.id}`,
 
+            "_blank"
 
-                  <button
+          )}
 
-                  onClick={()=>deleteReport(report.id)}
+          >
 
-                  >
+          <Eye
 
-                    <Trash2
-                    size={18}
-                    className="text-red-500"
-                    />
+          size={18}
 
-                  </button>
+          className="text-cyan-500"
 
+          />
 
+          </button>
 
-                  </div>
 
 
-                </td>
 
 
+          <button
 
+          onClick={()=>window.open(
 
-                </tr>
+            `${API_URL}/download/${report.id}`,
 
+            "_blank"
 
-              ))
+          )}
 
-            }
+          >
 
+          <Download
 
-            </tbody>
+          size={18}
 
+          className="text-emerald-500"
+
+          />
+
+          </button>
+
+
+
+
+
+
+          <button
+
+          onClick={()=>deleteReport(report.id)}
+
+          >
+
+          <Trash2
+
+          size={18}
+
+          className="text-red-500"
+
+          />
+
+          </button>
+
+
+
+
+          </div>
+
+
+          </td>
+
+
+
+          </tr>
+
+
+          ))
+
+          }
+
+
+
+          </tbody>
 
 
           </table>
@@ -567,7 +918,9 @@ export default function Reports() {
         }
 
 
+
         </div>
+
 
 
 
@@ -586,31 +939,40 @@ export default function Reports() {
         ">
 
 
-          <FileText
-          className="text-cyan-500"
-          size={26}
-          />
+        <FileText
+
+        className="text-cyan-500"
+
+        size={26}
+
+        />
 
 
-          <div>
-
-            <h3 className="
-            font-semibold
-            text-slate-900
-            dark:text-white
-            ">
-              Forensic Reports
-            </h3>
+        <div>
 
 
-            <p className="text-sm text-slate-500">
+        <h3 className="
+        font-semibold
+        text-slate-900
+        dark:text-white
+        ">
 
-              PDF reports generated from investigation data.
+        Forensic Reports
 
-            </p>
+        </h3>
 
 
-          </div>
+        <p className="
+        text-sm
+        text-slate-500
+        ">
+
+        Reports can be exported as PDF, JSON, CSV and HTML based on settings.
+
+        </p>
+
+
+        </div>
 
 
         </div>
@@ -621,6 +983,7 @@ export default function Reports() {
 
 
     </MainLayout>
+
 
   );
 

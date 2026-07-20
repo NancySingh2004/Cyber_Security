@@ -10,6 +10,7 @@ from app.services.sqlite_analyzer import analyze_sqlite
 from app.services.whatsapp_analyzer import analyze_whatsapp
 from app.services.calllog_analyzer import analyze_calllog
 from app.services.sms_analyzer import analyze_sms
+from app.services.browser_analyzer import analyze_browser
 
 
 
@@ -204,6 +205,12 @@ def analyze_file(file_path):
             result["analysis"]["sms_details"] = (
 
                 analyze_sms(file_path)
+            )
+
+        if "browser_history" in tables:
+
+            result["analysis"]["browser_details"]=(
+                analyze_browser(file_path)
             )
 
 

@@ -1,0 +1,1309 @@
+{
+    "report": {
+        "report_id": 3,
+        "generated_on": "21-07-2026 00:06:53",
+        "generated_by": "ForensiQ Digital Forensics Platform",
+        "report_format": "JSON",
+        "version": "1.0"
+    },
+    "case_information": {
+        "case_name": "whatsapp fraud",
+        "investigator": "Nancy Singh",
+        "case_type": "Social Media",
+        "priority": "High",
+        "status": "Open",
+        "description": "A major \"Boss Scam\" hit an Indian firm, resulting in a ₹10.4 crore loss after an employee followed fake orders sent over WhatsApp. Fraudsters impersonated the company's senior executives, directing staff to transfer immediate funds for \"regulatory requirements.\" The ruse was only discovered when the worker contacted the executives directly."
+    },
+    "evidence_information": {
+        "filename": "browser.db",
+        "filepath": "uploads\\browser.db",
+        "filetype": "application/octet-stream",
+        "filesize": "28672",
+        "sha256": "bb8c146af0620dfa963978225375a21df69378f867fd47122bfcf669ed2cf993",
+        "status": "Uploaded"
+    },
+    "forensic_summary": {
+        "integrity_check": "PASSED",
+        "hash_verified": true,
+        "chain_of_custody": "Maintained",
+        "tampering_detected": false,
+        "analysis_status": "Completed"
+    },
+    "analysis_result": {
+        "file_name": "browser.db",
+        "file_type": "SQLite Database",
+        "analysis": {
+            "file_size_kb": 28.0,
+            "sha256": "bb8c146af0620dfa963978225375a21df69378f867fd47122bfcf669ed2cf993",
+            "created_time": 1784531471.5649722,
+            "modified_time": 1784556727.8025935,
+            "database": {
+                "database_name": "browser.db",
+                "sqlite_version": "3.45.1",
+                "total_tables": 2,
+                "tables": [
+                    {
+                        "table_name": "browser_history",
+                        "rows": 200
+                    },
+                    {
+                        "table_name": "sqlite_sequence",
+                        "rows": 1
+                    }
+                ]
+            },
+            "browser_details": {
+                "total_visits": 200,
+                "unique_domains": 37,
+                "top_sites": [
+                    {
+                        "domain": "www.geeksforgeeks.org",
+                        "visits": 165
+                    },
+                    {
+                        "domain": "www.icicibank.com",
+                        "visits": 122
+                    },
+                    {
+                        "domain": "www.amazon.in",
+                        "visits": 120
+                    },
+                    {
+                        "domain": "www.facebook.com",
+                        "visits": 119
+                    },
+                    {
+                        "domain": "www.flipkart.com",
+                        "visits": 114
+                    },
+                    {
+                        "domain": "duckduckgo.com",
+                        "visits": 113
+                    },
+                    {
+                        "domain": "github.com",
+                        "visits": 107
+                    },
+                    {
+                        "domain": "www.onlinesbi.sbi",
+                        "visits": 98
+                    },
+                    {
+                        "domain": "open.spotify.com",
+                        "visits": 97
+                    },
+                    {
+                        "domain": "www.exploit-db.com",
+                        "visits": 97
+                    }
+                ],
+                "history": [
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "31-12-2026 12:46:11",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "28-12-2026 06:16:34",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "27-12-2026 11:53:24",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.cnn.com",
+                        "title": "CNN",
+                        "visit_time": "26-12-2026 22:19:36",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://owasp.org",
+                        "title": "OWASP Foundation",
+                        "visit_time": "11-12-2026 19:09:59",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://owasp.org",
+                        "title": "OWASP Foundation",
+                        "visit_time": "27-11-2026 23:41:06",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "27-11-2026 02:45:05",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.khanacademy.org",
+                        "title": "Khan Academy",
+                        "visit_time": "24-11-2026 13:07:36",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "10-11-2026 04:00:04",
+                        "visit_count": 24
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "04-11-2026 17:08:58",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://owasp.org",
+                        "title": "OWASP Foundation",
+                        "visit_time": "03-11-2026 10:40:54",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "01-11-2026 08:44:44",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.linkedin.com/feed",
+                        "title": "LinkedIn Feed",
+                        "visit_time": "25-10-2026 15:20:03",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=cyber+security+tips",
+                        "title": "cyber security tips - Google Search",
+                        "visit_time": "21-10-2026 05:56:15",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.khanacademy.org",
+                        "title": "Khan Academy",
+                        "visit_time": "20-10-2026 06:50:50",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "17-10-2026 15:23:51",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "08-10-2026 04:58:23",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "06-10-2026 13:55:59",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.bing.com/search?q=android+forensics",
+                        "title": "android forensics - Bing",
+                        "visit_time": "04-10-2026 05:01:08",
+                        "visit_count": 1
+                    },
+                    {
+                        "url": "https://stackoverflow.com/questions",
+                        "title": "Stack Overflow",
+                        "visit_time": "02-10-2026 17:39:31",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "23-09-2026 12:54:47",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.cnn.com",
+                        "title": "CNN",
+                        "visit_time": "15-09-2026 11:58:58",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "12-09-2026 02:05:10",
+                        "visit_count": 24
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "09-09-2026 17:04:22",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "08-09-2026 10:40:27",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.ndtv.com",
+                        "title": "NDTV News",
+                        "visit_time": "07-09-2026 03:07:18",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "04-09-2026 01:17:18",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.hackthebox.com",
+                        "title": "Hack The Box",
+                        "visit_time": "24-08-2026 16:27:48",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://twitter.com/home",
+                        "title": "Home / X",
+                        "visit_time": "23-08-2026 11:19:40",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "23-08-2026 05:13:49",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "20-08-2026 13:59:13",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.ebay.com",
+                        "title": "Electronics, Cars, Fashion | eBay",
+                        "visit_time": "19-08-2026 22:39:07",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "17-08-2026 12:49:19",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "11-08-2026 08:42:12",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://timesofindia.indiatimes.com",
+                        "title": "Times of India",
+                        "visit_time": "04-08-2026 16:53:57",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "25-07-2026 11:58:31",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.bing.com/search?q=android+forensics",
+                        "title": "android forensics - Bing",
+                        "visit_time": "19-07-2026 18:18:08",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "12-07-2026 10:01:24",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "12-07-2026 02:06:39",
+                        "visit_count": 24
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "11-07-2026 09:32:50",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.linkedin.com/feed",
+                        "title": "LinkedIn Feed",
+                        "visit_time": "09-07-2026 11:48:58",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "08-07-2026 02:35:00",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "03-07-2026 10:06:14",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://timesofindia.indiatimes.com",
+                        "title": "Times of India",
+                        "visit_time": "02-07-2026 01:42:57",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.hdfcbank.com/netbanking",
+                        "title": "HDFC Bank NetBanking",
+                        "visit_time": "25-06-2026 08:29:42",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.ebay.com",
+                        "title": "Electronics, Cars, Fashion | eBay",
+                        "visit_time": "21-06-2026 08:30:16",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "20-06-2026 02:11:14",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://twitter.com/home",
+                        "title": "Home / X",
+                        "visit_time": "14-06-2026 07:50:20",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.reddit.com/r/androiddev",
+                        "title": "Android Dev - Reddit",
+                        "visit_time": "12-06-2026 16:08:03",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://mail.google.com",
+                        "title": "Gmail",
+                        "visit_time": "10-06-2026 18:39:10",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "05-06-2026 12:06:36",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "03-06-2026 22:56:09",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "01-06-2026 06:16:43",
+                        "visit_count": 22
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "30-05-2026 14:18:08",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "29-05-2026 13:55:38",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://timesofindia.indiatimes.com",
+                        "title": "Times of India",
+                        "visit_time": "25-05-2026 10:36:05",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "20-05-2026 18:11:23",
+                        "visit_count": 9
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "13-05-2026 04:07:23",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.bbc.com/news",
+                        "title": "BBC News",
+                        "visit_time": "11-05-2026 17:38:55",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://stackoverflow.com/questions",
+                        "title": "Stack Overflow",
+                        "visit_time": "26-04-2026 07:52:34",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=cyber+security+tips",
+                        "title": "cyber security tips - Google Search",
+                        "visit_time": "23-04-2026 18:22:52",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "23-04-2026 11:16:23",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.ebay.com",
+                        "title": "Electronics, Cars, Fashion | eBay",
+                        "visit_time": "21-04-2026 11:43:02",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://timesofindia.indiatimes.com",
+                        "title": "Times of India",
+                        "visit_time": "20-04-2026 02:09:06",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "17-04-2026 10:28:01",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.reddit.com/r/androiddev",
+                        "title": "Android Dev - Reddit",
+                        "visit_time": "17-04-2026 03:00:54",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=weather+today",
+                        "title": "weather today - Google Search",
+                        "visit_time": "09-04-2026 20:42:06",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "07-04-2026 09:19:47",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "05-04-2026 21:36:32",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "30-03-2026 11:09:44",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://outlook.live.com",
+                        "title": "Outlook",
+                        "visit_time": "25-03-2026 21:23:08",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "23-03-2026 00:10:38",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.ndtv.com",
+                        "title": "NDTV News",
+                        "visit_time": "20-03-2026 11:26:33",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "20-03-2026 04:19:13",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.hackthebox.com",
+                        "title": "Hack The Box",
+                        "visit_time": "12-03-2026 13:44:45",
+                        "visit_count": 24
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "04-03-2026 10:11:23",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "01-03-2026 12:46:15",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.hackthebox.com",
+                        "title": "Hack The Box",
+                        "visit_time": "01-03-2026 07:56:02",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "28-02-2026 21:52:47",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "13-02-2026 19:57:31",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "13-02-2026 13:10:38",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "12-02-2026 09:53:56",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.instagram.com",
+                        "title": "Instagram",
+                        "visit_time": "11-02-2026 19:57:33",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "08-02-2026 14:33:48",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.whatsapp.com",
+                        "title": "WhatsApp",
+                        "visit_time": "07-02-2026 15:37:25",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "05-02-2026 05:25:31",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "28-01-2026 19:40:03",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.kali.org",
+                        "title": "Kali Linux",
+                        "visit_time": "26-01-2026 19:33:37",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://www.instagram.com",
+                        "title": "Instagram",
+                        "visit_time": "26-01-2026 14:08:32",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "23-01-2026 20:21:13",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.hdfcbank.com/netbanking",
+                        "title": "HDFC Bank NetBanking",
+                        "visit_time": "23-01-2026 15:03:17",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "23-01-2026 05:50:34",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=weather+today",
+                        "title": "weather today - Google Search",
+                        "visit_time": "23-01-2026 01:36:08",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.khanacademy.org",
+                        "title": "Khan Academy",
+                        "visit_time": "20-01-2026 14:59:47",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.netflix.com",
+                        "title": "Netflix",
+                        "visit_time": "16-01-2026 16:54:12",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "11-01-2026 08:14:38",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "07-01-2026 01:47:07",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "27-12-2025 23:19:45",
+                        "visit_count": 7
+                    },
+                    {
+                        "url": "https://www.flipkart.com",
+                        "title": "Flipkart Online Shopping",
+                        "visit_time": "24-12-2025 06:14:57",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "17-12-2025 00:42:50",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "16-12-2025 17:37:57",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "13-12-2025 13:58:20",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "08-12-2025 16:20:25",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "06-12-2025 14:51:50",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.whatsapp.com",
+                        "title": "WhatsApp",
+                        "visit_time": "20-11-2025 18:22:24",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.reddit.com/r/androiddev",
+                        "title": "Android Dev - Reddit",
+                        "visit_time": "17-11-2025 23:38:03",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.ebay.com",
+                        "title": "Electronics, Cars, Fashion | eBay",
+                        "visit_time": "15-11-2025 23:29:21",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "13-11-2025 06:48:16",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "08-11-2025 23:53:51",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "06-11-2025 12:56:03",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.youtube.com",
+                        "title": "YouTube",
+                        "visit_time": "20-10-2025 22:01:22",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://owasp.org",
+                        "title": "OWASP Foundation",
+                        "visit_time": "18-10-2025 04:21:39",
+                        "visit_count": 9
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "18-10-2025 02:25:16",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "17-10-2025 04:19:55",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://mail.google.com",
+                        "title": "Gmail",
+                        "visit_time": "14-10-2025 18:30:09",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=weather+today",
+                        "title": "weather today - Google Search",
+                        "visit_time": "14-10-2025 08:11:14",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://www.sbi.co.in",
+                        "title": "State Bank of India",
+                        "visit_time": "13-10-2025 13:20:34",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.youtube.com",
+                        "title": "YouTube",
+                        "visit_time": "13-10-2025 05:56:34",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "10-10-2025 10:06:37",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "09-10-2025 19:25:58",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "09-10-2025 12:28:34",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=weather+today",
+                        "title": "weather today - Google Search",
+                        "visit_time": "08-10-2025 13:05:55",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.google.com/search?q=weather+today",
+                        "title": "weather today - Google Search",
+                        "visit_time": "05-10-2025 14:12:44",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "01-10-2025 06:48:38",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.instagram.com",
+                        "title": "Instagram",
+                        "visit_time": "27-09-2025 06:11:01",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.bbc.com/news",
+                        "title": "BBC News",
+                        "visit_time": "26-09-2025 23:50:15",
+                        "visit_count": 17
+                    },
+                    {
+                        "url": "https://www.youtube.com",
+                        "title": "YouTube",
+                        "visit_time": "25-09-2025 19:43:15",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.linkedin.com/feed",
+                        "title": "LinkedIn Feed",
+                        "visit_time": "12-09-2025 23:13:35",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://twitter.com/home",
+                        "title": "Home / X",
+                        "visit_time": "06-09-2025 02:15:04",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://www.sbi.co.in",
+                        "title": "State Bank of India",
+                        "visit_time": "04-09-2025 11:34:04",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.bing.com/search?q=android+forensics",
+                        "title": "android forensics - Bing",
+                        "visit_time": "03-09-2025 08:37:56",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "01-09-2025 21:09:06",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://mail.google.com",
+                        "title": "Gmail",
+                        "visit_time": "22-08-2025 02:00:04",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "21-08-2025 01:55:39",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "20-08-2025 06:04:09",
+                        "visit_count": 15
+                    },
+                    {
+                        "url": "https://www.netflix.com",
+                        "title": "Netflix",
+                        "visit_time": "14-08-2025 05:22:15",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.cnn.com",
+                        "title": "CNN",
+                        "visit_time": "12-08-2025 18:16:58",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "11-08-2025 10:59:37",
+                        "visit_count": 12
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "11-08-2025 04:14:09",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "06-08-2025 11:52:16",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.kali.org",
+                        "title": "Kali Linux",
+                        "visit_time": "02-08-2025 11:34:58",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "02-08-2025 09:38:17",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "01-08-2025 10:37:36",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://mail.google.com",
+                        "title": "Gmail",
+                        "visit_time": "25-07-2025 19:02:37",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.whatsapp.com",
+                        "title": "WhatsApp",
+                        "visit_time": "23-07-2025 13:22:15",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "16-07-2025 23:36:39",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://stackoverflow.com/questions",
+                        "title": "Stack Overflow",
+                        "visit_time": "13-07-2025 01:35:36",
+                        "visit_count": 6
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "12-07-2025 19:02:34",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "11-07-2025 16:56:59",
+                        "visit_count": 9
+                    },
+                    {
+                        "url": "https://www.hackthebox.com",
+                        "title": "Hack The Box",
+                        "visit_time": "07-07-2025 12:24:46",
+                        "visit_count": 24
+                    },
+                    {
+                        "url": "https://outlook.live.com",
+                        "title": "Outlook",
+                        "visit_time": "06-07-2025 02:02:27",
+                        "visit_count": 8
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "03-07-2025 12:46:21",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://www.onlinesbi.sbi",
+                        "title": "OnlineSBI Login",
+                        "visit_time": "24-06-2025 09:40:00",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.ndtv.com",
+                        "title": "NDTV News",
+                        "visit_time": "17-06-2025 08:04:57",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.youtube.com",
+                        "title": "YouTube",
+                        "visit_time": "11-06-2025 06:37:46",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.ebay.com",
+                        "title": "Electronics, Cars, Fashion | eBay",
+                        "visit_time": "07-06-2025 04:19:14",
+                        "visit_count": 18
+                    },
+                    {
+                        "url": "https://www.sbi.co.in",
+                        "title": "State Bank of India",
+                        "visit_time": "05-06-2025 17:05:41",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.reddit.com/r/androiddev",
+                        "title": "Android Dev - Reddit",
+                        "visit_time": "04-06-2025 20:12:28",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://timesofindia.indiatimes.com",
+                        "title": "Times of India",
+                        "visit_time": "02-06-2025 16:49:58",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.whatsapp.com",
+                        "title": "WhatsApp",
+                        "visit_time": "29-05-2025 09:58:39",
+                        "visit_count": 1
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "28-05-2025 16:15:50",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "26-05-2025 08:01:31",
+                        "visit_count": 16
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "15-05-2025 08:02:52",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.reddit.com/r/androiddev",
+                        "title": "Android Dev - Reddit",
+                        "visit_time": "14-05-2025 04:54:39",
+                        "visit_count": 22
+                    },
+                    {
+                        "url": "https://www.kali.org",
+                        "title": "Kali Linux",
+                        "visit_time": "10-05-2025 15:59:01",
+                        "visit_count": 23
+                    },
+                    {
+                        "url": "https://www.coursera.org",
+                        "title": "Coursera | Online Courses",
+                        "visit_time": "09-05-2025 02:55:49",
+                        "visit_count": 6
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "07-05-2025 10:45:27",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://owasp.org",
+                        "title": "OWASP Foundation",
+                        "visit_time": "26-04-2025 00:14:19",
+                        "visit_count": 22
+                    },
+                    {
+                        "url": "https://www.cnn.com",
+                        "title": "CNN",
+                        "visit_time": "17-04-2025 20:27:12",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.kali.org",
+                        "title": "Kali Linux",
+                        "visit_time": "15-04-2025 06:13:41",
+                        "visit_count": 9
+                    },
+                    {
+                        "url": "https://en.wikipedia.org/wiki/Digital_forensics",
+                        "title": "Digital forensics - Wikipedia",
+                        "visit_time": "14-04-2025 20:26:06",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://github.com",
+                        "title": "GitHub",
+                        "visit_time": "12-04-2025 19:09:27",
+                        "visit_count": 25
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "12-04-2025 00:36:39",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.whatsapp.com",
+                        "title": "WhatsApp",
+                        "visit_time": "11-04-2025 03:57:33",
+                        "visit_count": 4
+                    },
+                    {
+                        "url": "https://www.facebook.com",
+                        "title": "Facebook - Log In or Sign Up",
+                        "visit_time": "08-04-2025 13:45:37",
+                        "visit_count": 11
+                    },
+                    {
+                        "url": "https://www.hdfcbank.com/netbanking",
+                        "title": "HDFC Bank NetBanking",
+                        "visit_time": "06-04-2025 09:28:26",
+                        "visit_count": 9
+                    },
+                    {
+                        "url": "https://www.ndtv.com",
+                        "title": "NDTV News",
+                        "visit_time": "30-03-2025 08:20:07",
+                        "visit_count": 1
+                    },
+                    {
+                        "url": "https://www.geeksforgeeks.org",
+                        "title": "GeeksforGeeks",
+                        "visit_time": "21-03-2025 22:03:49",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "20-03-2025 01:19:31",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "10-03-2025 10:02:16",
+                        "visit_count": 22
+                    },
+                    {
+                        "url": "https://www.kali.org",
+                        "title": "Kali Linux",
+                        "visit_time": "03-03-2025 12:48:21",
+                        "visit_count": 14
+                    },
+                    {
+                        "url": "https://duckduckgo.com/?q=vpn+free",
+                        "title": "vpn free at DuckDuckGo",
+                        "visit_time": "28-02-2025 12:22:07",
+                        "visit_count": 22
+                    },
+                    {
+                        "url": "https://www.khanacademy.org",
+                        "title": "Khan Academy",
+                        "visit_time": "27-02-2025 08:13:52",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.instagram.com",
+                        "title": "Instagram",
+                        "visit_time": "21-02-2025 07:08:00",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://twitter.com/home",
+                        "title": "Home / X",
+                        "visit_time": "09-02-2025 12:51:03",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.hackthebox.com",
+                        "title": "Hack The Box",
+                        "visit_time": "08-02-2025 00:33:12",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://www.instagram.com",
+                        "title": "Instagram",
+                        "visit_time": "05-02-2025 12:58:09",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.bing.com/search?q=android+forensics",
+                        "title": "android forensics - Bing",
+                        "visit_time": "05-02-2025 10:00:56",
+                        "visit_count": 2
+                    },
+                    {
+                        "url": "https://tryhackme.com",
+                        "title": "TryHackMe",
+                        "visit_time": "05-02-2025 08:52:45",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.myntra.com",
+                        "title": "Myntra - Fashion Shopping",
+                        "visit_time": "04-02-2025 06:06:29",
+                        "visit_count": 7
+                    },
+                    {
+                        "url": "https://www.icicibank.com",
+                        "title": "ICICI Bank - Personal Banking",
+                        "visit_time": "04-02-2025 01:02:25",
+                        "visit_count": 21
+                    },
+                    {
+                        "url": "https://www.khanacademy.org",
+                        "title": "Khan Academy",
+                        "visit_time": "02-02-2025 21:40:34",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.hdfcbank.com/netbanking",
+                        "title": "HDFC Bank NetBanking",
+                        "visit_time": "29-01-2025 22:55:40",
+                        "visit_count": 10
+                    },
+                    {
+                        "url": "https://www.exploit-db.com",
+                        "title": "Exploit Database",
+                        "visit_time": "28-01-2025 06:11:59",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://mail.google.com",
+                        "title": "Gmail",
+                        "visit_time": "26-01-2025 09:12:22",
+                        "visit_count": 20
+                    },
+                    {
+                        "url": "https://www.ndtv.com",
+                        "title": "NDTV News",
+                        "visit_time": "25-01-2025 18:01:01",
+                        "visit_count": 19
+                    },
+                    {
+                        "url": "https://www.amazon.in",
+                        "title": "Amazon.in: Online Shopping",
+                        "visit_time": "25-01-2025 10:00:11",
+                        "visit_count": 5
+                    },
+                    {
+                        "url": "https://www.sbi.co.in",
+                        "title": "State Bank of India",
+                        "visit_time": "19-01-2025 05:32:15",
+                        "visit_count": 3
+                    },
+                    {
+                        "url": "https://open.spotify.com",
+                        "title": "Spotify - Web Player",
+                        "visit_time": "17-01-2025 00:33:32",
+                        "visit_count": 13
+                    },
+                    {
+                        "url": "https://www.linkedin.com/feed",
+                        "title": "LinkedIn Feed",
+                        "visit_time": "05-01-2025 06:05:20",
+                        "visit_count": 18
+                    }
+                ]
+            }
+        }
+    },
+    "footer": {
+        "tool": "ForensiQ",
+        "copyright": "Generated by ForensiQ Digital Forensics Platform"
+    }
+}

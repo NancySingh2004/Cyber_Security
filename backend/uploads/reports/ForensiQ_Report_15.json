@@ -1,0 +1,31 @@
+{
+    "report": {
+        "id": 15,
+        "generated_on": "2026-07-20 19:13:45.012900",
+        "report_format": "JSON",
+        "generated_by": "ForensiQ"
+    },
+    "case": {
+        "title": "Whatsapp Investigation",
+        "investigator": "Nancy Singh",
+        "case_type": "Social Media",
+        "priority": "High",
+        "status": "Open",
+        "description": " A 70-year-old chartered accountant in India lost over \u20b921 crores by transferring money to fake cryptocurrency portals pushed via WhatsApp. "
+    },
+    "evidence": {
+        "filename": "browser.db",
+        "filepath": "uploads\\browser.db",
+        "filetype": "application/octet-stream",
+        "filesize": "28672",
+        "sha256": "bb8c146af0620dfa963978225375a21df69378f867fd47122bfcf669ed2cf993",
+        "status": "Uploaded"
+    },
+    "analysis": {
+        "integrity_check": "PASSED",
+        "hash_verified": true,
+        "chain_of_custody": "Maintained",
+        "ai_summary": "Evidence processed successfully.",
+        "risk_level": "Low"
+    }
+}

@@ -3,6 +3,7 @@ import MainLayout from "../components/layout/MainLayout";
 import { getEvidence, analyzeEvidence } from "../services/evidenceService";
 import Contacts from "../components/analysis/Contacts";
 import SMSViewer from "../components/analysis/SMSViewer";
+import BrowserHistory from "../components/analysis/BrowserHistory";
 
 export default function Analysis() {
   const [evidenceList, setEvidenceList] = useState([]);
@@ -466,6 +467,13 @@ analysis?.analysis?.sms_details?.messages?.length > 0 && (
 
 )
 }
+{/* Browser History */}
+
+           {analysis?.analysis?.browser_details && (
+    <BrowserHistory
+        history={analysis.analysis.browser_details.history}
+    />
+)}
       </div>
     </MainLayout>
   );

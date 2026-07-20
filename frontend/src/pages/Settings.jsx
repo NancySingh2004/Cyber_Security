@@ -324,31 +324,32 @@ export default function Settings() {
 
         <SelectCard
 
-          title="Report Format"
+  title="Report Format"
 
-          description="Default export format"
+  description="Default export format"
 
-          value={settings.report_format}
+  value={settings.report_format}
 
-          options={[
-            "PDF",
-            "JSON",
-            "CSV"
-          ]}
+  options={[
+    "PDF",
+    "JSON",
+    "CSV",
+    "HTML"
+  ]}
 
-          onChange={(e)=>
+  onChange={(e)=>
 
-            setSettings({
+    setSettings({
 
-              ...settings,
+      ...settings,
 
-              report_format:e.target.value
+      report_format:e.target.value
 
-            })
+    })
 
-          }
+  }
 
-        />
+/>
 
 
 
