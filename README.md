@@ -392,7 +392,7 @@ Investigation Report
 - EXIF Extraction
 
 
-## Phase 2 🚧
+## Phase 2 ✅
 
 - APK Reverse Engineering
 - SQLite Advanced Analysis
