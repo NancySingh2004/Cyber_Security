@@ -36,6 +36,7 @@ def analyze_whatsapp(db_path):
     result["total_chats"] = total_chats
     result["total_contacts"] = total_contacts
     result["total_messages"] = total_messages
+    
 
     # -----------------------------
     # Chat List
@@ -141,6 +142,96 @@ def analyze_whatsapp(db_path):
         print(e)
 
     result["messages"] = messages
+    # -----------------------------
+    # Contact Extraction
+    # -----------------------------
+
+    contacts = []
+
+    # wa.db (dummy database)
+    try:
+
+        cursor.execute("""
+
+            SELECT
+                display_name,
+                phone_number,
+                jid,
+                status
+
+            FROM wa_contacts
+
+            ORDER BY display_name
+
+        """)
+
+        rows = cursor.fetchall()
+
+        for row in rows:
+
+            contacts.append({
+
+                "name": row["display_name"],
+
+                "phone": row["phone_number"],
+
+                "jid": row["jid"],
+
+                "status": row["status"]
+
+            })
+
+    except:
+
+        pass
+
+
+
+    # Real WhatsApp Database
+
+    if len(contacts) == 0:
+
+        try:
+
+            cursor.execute("""
+
+                SELECT
+                    raw_string
+
+                FROM jid
+
+                ORDER BY raw_string
+
+            """)
+
+            rows = cursor.fetchall()
+
+            for row in rows:
+
+                number = (
+                    row["raw_string"]
+                    .replace("@s.whatsapp.net", "")
+                )
+
+                contacts.append({
+
+                    "name": "",
+
+                    "phone": number,
+
+                    "jid": row["raw_string"],
+
+                    "status": ""
+
+                })
+
+        except:
+
+            pass
+
+
+
+    result["contacts"] = contacts
 
     conn.close()
 

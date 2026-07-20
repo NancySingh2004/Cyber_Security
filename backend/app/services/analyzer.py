@@ -8,6 +8,8 @@ from app.services.apk_analyzer import analyze_apk
 from app.services.exif_analyzer import analyze_exif
 from app.services.sqlite_analyzer import analyze_sqlite
 from app.services.whatsapp_analyzer import analyze_whatsapp
+from app.services.calllog_analyzer import analyze_calllog
+from app.services.sms_analyzer import analyze_sms
 
 
 
@@ -59,9 +61,7 @@ def analyze_file(file_path):
 
 
 
-    # -------------------------
-    # COMMON FORENSIC DATA
-    # -------------------------
+    # Common Forensic Data
 
     result["analysis"]["file_size_kb"] = round(
         os.path.getsize(file_path) / 1024,
@@ -92,12 +92,10 @@ def analyze_file(file_path):
     # -------------------------
 
     if extension in [
-
         ".jpg",
         ".jpeg",
         ".png",
         ".webp"
-
     ]:
 
 
@@ -107,28 +105,22 @@ def analyze_file(file_path):
         result["file_type"] = "Image"
 
 
-
         result["analysis"].update({
 
             "format":
                 image.format,
 
-
             "width":
                 image.width,
-
 
             "height":
                 image.height,
 
-
             "mode":
                 image.mode,
 
-
             "resolution":
                 f"{image.width} x {image.height}",
-
 
             "exif_metadata":
                 analyze_exif(file_path)
@@ -143,16 +135,77 @@ def analyze_file(file_path):
     # SQLITE DATABASE
     # -------------------------
 
-    elif extension in [".db",".sqlite", ".sqlite3"]:
-        result["file_type"] = "SQLite Database"
+    elif extension in [
+        ".db",
+        ".sqlite",
+        ".sqlite3"
+    ]:
+
+
+        result["file_type"] = (
+            "SQLite Database"
+        )
+
+
+        database_info = analyze_sqlite(
+            file_path
+        )
+
 
         result["analysis"]["database"] = (
-            analyze_sqlite(file_path)
+            database_info
         )
 
-        result["analysis"]["whatsapp_details"] = (
-            analyze_whatsapp(file_path)
-        )
+
+
+        tables = [
+
+            table["table_name"]
+
+            for table in database_info.get(
+                "tables",
+                []
+            )
+
+        ]
+
+
+
+        # WhatsApp Database
+
+        if "wa_contacts" in tables:
+
+
+            result["analysis"]["whatsapp_details"] = (
+
+                analyze_whatsapp(
+                    file_path
+                )
+
+            )
+
+
+
+        # Call Log Database
+
+        elif "calls" in tables:
+
+
+            result["analysis"]["call_details"] = (
+
+                analyze_calllog(
+                    file_path
+                )
+
+            )
+
+        elif "sms" in tables:
+
+            result["analysis"]["sms_details"] = (
+
+                analyze_sms(file_path)
+            )
+
 
 
     # -------------------------
@@ -182,7 +235,10 @@ def analyze_file(file_path):
     elif extension == ".zip":
 
 
-        result["file_type"] = "ZIP Archive"
+        result["file_type"] = (
+            "ZIP Archive"
+        )
+
 
         result["analysis"]["zip_details"] = (
             analyze_zip(file_path)

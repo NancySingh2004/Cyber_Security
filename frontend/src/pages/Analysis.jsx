@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import MainLayout from "../components/layout/MainLayout";
 import { getEvidence, analyzeEvidence } from "../services/evidenceService";
+import Contacts from "../components/analysis/Contacts";
+import SMSViewer from "../components/analysis/SMSViewer";
 
 export default function Analysis() {
   const [evidenceList, setEvidenceList] = useState([]);
@@ -107,6 +109,363 @@ export default function Analysis() {
     </div>
   </div>
 )}
+{
+analysis?.analysis?.whatsapp_details?.contacts?.length > 0 && (
+
+<div className="mt-8">
+
+    <div className="mb-6">
+
+        <h2 className="text-2xl font-bold text-white">
+            WhatsApp Contacts
+        </h2>
+
+        <p className="text-slate-400">
+            {analysis.analysis.whatsapp_details.contacts.length}
+            {" "}Contacts Extracted
+        </p>
+
+    </div>
+
+    <Contacts
+        contacts={
+            analysis.analysis.whatsapp_details.contacts
+        }
+    />
+
+</div>
+
+)
+}
+{
+analysis?.analysis?.call_details?.calls?.length > 0 && (
+
+<div className="mt-8">
+
+
+    <div className="mb-6">
+
+        <h2 className="text-2xl font-bold text-white">
+            Call Log Analysis
+        </h2>
+
+        <p className="text-slate-400">
+            {analysis.analysis.call_details.total_calls}
+            {" "}Calls Extracted
+        </p>
+
+    </div>
+
+
+
+    {/* Summary Cards */}
+
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+
+
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+
+            <p className="text-slate-500 text-xs uppercase">
+                Total Calls
+            </p>
+
+            <h3 className="text-3xl text-white font-bold mt-2">
+                {
+                analysis.analysis.call_details.total_calls
+                }
+            </h3>
+
+        </div>
+
+
+
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+
+            <p className="text-slate-500 text-xs uppercase">
+                Incoming
+            </p>
+
+            <h3 className="text-3xl text-green-400 font-bold mt-2">
+                {
+                analysis.analysis.call_details.incoming_calls
+                }
+            </h3>
+
+        </div>
+
+
+
+
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+
+            <p className="text-slate-500 text-xs uppercase">
+                Outgoing
+            </p>
+
+            <h3 className="text-3xl text-cyan-400 font-bold mt-2">
+                {
+                analysis.analysis.call_details.outgoing_calls
+                }
+            </h3>
+
+        </div>
+
+
+
+
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+
+            <p className="text-slate-500 text-xs uppercase">
+                Missed
+            </p>
+
+            <h3 className="text-3xl text-red-400 font-bold mt-2">
+                {
+                analysis.analysis.call_details.missed_calls
+                }
+            </h3>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    {/* Call Table */}
+
+    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+
+
+        <table className="w-full text-left">
+
+
+            <thead className="bg-slate-950">
+
+                <tr>
+
+                    <th className="p-4 text-xs text-slate-500">
+                        NAME
+                    </th>
+
+
+                    <th className="p-4 text-xs text-slate-500">
+                        NUMBER
+                    </th>
+
+
+                    <th className="p-4 text-xs text-slate-500">
+                        TYPE
+                    </th>
+
+
+                    <th className="p-4 text-xs text-slate-500">
+                        DURATION
+                    </th>
+
+
+                    <th className="p-4 text-xs text-slate-500">
+                        DATE
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+
+
+            {
+            analysis.analysis.call_details.calls.map(
+                (call,index)=>(
+
+
+                <tr 
+                key={index}
+                className="border-t border-slate-800"
+                >
+
+
+                    <td className="p-4 text-white">
+                        {call.name}
+                    </td>
+
+
+                    <td className="p-4 text-slate-400">
+                        {call.number}
+                    </td>
+
+
+
+                    <td className="p-4">
+
+                        <span className={
+
+                            call.type==="Missed"
+                            ?
+                            "text-red-400"
+                            :
+                            call.type==="Incoming"
+                            ?
+                            "text-green-400"
+                            :
+                            "text-cyan-400"
+
+                        }>
+
+                            {call.type}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <td className="p-4 text-slate-400">
+
+                        {call.duration} sec
+
+                    </td>
+
+
+
+                    <td className="p-4 text-slate-400">
+
+                        {call.date}
+
+                    </td>
+
+
+                </tr>
+
+
+                )
+            )
+            }
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+)
+}
+{
+analysis?.analysis?.sms_details?.messages?.length > 0 && (
+
+<div className="mt-8">
+
+
+    <div className="mb-6">
+
+        <h2 className="text-2xl font-bold text-white">
+            SMS Analysis
+        </h2>
+
+
+        <p className="text-slate-400">
+
+            {
+            analysis.analysis.sms_details.total_messages
+            }
+
+            {" "}Messages Extracted
+
+        </p>
+
+
+    </div>
+
+
+
+    {/* SMS Summary */}
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+
+
+        <div className="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+
+            <p className="text-slate-500 text-xs">
+                TOTAL SMS
+            </p>
+
+            <h2 className="text-3xl text-white font-bold">
+
+                {
+                analysis.analysis.sms_details.total_messages
+                }
+
+            </h2>
+
+        </div>
+
+
+
+        <div className="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+
+            <p className="text-slate-500 text-xs">
+                RECEIVED
+            </p>
+
+            <h2 className="text-3xl text-green-400 font-bold">
+
+                {
+                analysis.analysis.sms_details.received_messages
+                }
+
+            </h2>
+
+        </div>
+
+
+
+
+        <div className="bg-slate-900 border border-slate-800 p-5 rounded-xl">
+
+            <p className="text-slate-500 text-xs">
+                SENT
+            </p>
+
+
+            <h2 className="text-3xl text-cyan-400 font-bold">
+
+                {
+                analysis.analysis.sms_details.sent_messages
+                }
+
+            </h2>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <SMSViewer
+
+        messages={
+          analysis.analysis.sms_details.messages
+        }
+
+    />
+
+
+</div>
+
+)
+}
       </div>
     </MainLayout>
   );
