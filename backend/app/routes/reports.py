@@ -2,24 +2,25 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
+import os
+
 from app.database.database import SessionLocal
+
 from app.models.report import Report
 from app.models.case import Case
 from app.models.evidence import Evidence
 
-from reportlab.platypus import (
-    SimpleDocTemplate,
-    Paragraph,
-    Spacer,
-    Table,
-    TableStyle
+from app.services.analyzer import analyze_file
+
+from app.services.reports.report_helper import (
+    get_report_format,
+    get_report_filename
 )
 
-from reportlab.lib.styles import getSampleStyleSheet
-
-import os
-from datetime import datetime
-
+from app.services.reports.pdf_generator import generate_pdf
+from app.services.reports.json_generator import generate_json
+from app.services.reports.csv_generator import generate_csv
+from app.services.reports.html_generator import generate_html
 
 
 router = APIRouter(
@@ -41,18 +42,9 @@ def get_db():
 
 
 
-REPORT_FOLDER = "uploads/reports"
-
-os.makedirs(
-    REPORT_FOLDER,
-    exist_ok=True
-)
-
-
-
-
-
-# Get Reports
+# ==============================
+# GET ALL REPORTS
+# ==============================
 
 @router.get("/")
 def get_reports(
@@ -63,11 +55,9 @@ def get_reports(
 
 
 
-
-
-
-
-# Create Professional Report
+# ==============================
+# CREATE REPORT
+# ==============================
 
 @router.post("/")
 def create_report(
@@ -89,7 +79,7 @@ def create_report(
 
 
 
-    # Find case
+    # Find Case
 
     case = (
         db.query(Case)
@@ -101,7 +91,7 @@ def create_report(
 
 
 
-    # Find evidence
+    # Find Evidence
 
     evidence = (
         db.query(Evidence)
@@ -113,16 +103,39 @@ def create_report(
 
 
 
+    if not evidence:
+
+        return {
+            "error":"Evidence not found"
+        }
+
+
+
+    # Run Analysis
+
+    analysis_result = analyze_file(
+        evidence.filepath
+    )
+
+
+
+    # Get format from Settings
+
+    report_format = get_report_format(
+        db
+    )
+
+
+
+    # Create report entry
+
     report = Report(
 
         case_name=case_name,
 
         evidence_name=evidence_name,
 
-        report_type=data.get(
-            "report_type",
-            "PDF"
-        ),
+        report_type=report_format,
 
         status="Generated"
 
@@ -138,243 +151,105 @@ def create_report(
 
 
 
+    # File path
 
-    filename = (
-        f"ForensiQ_Report_{report.id}.pdf"
-    )
+    filename, filepath = get_report_filename(
 
+        report.id,
 
-    filepath = os.path.join(
-        REPORT_FOLDER,
-        filename
-    )
-
-
-
-
-    doc = SimpleDocTemplate(
-        filepath
-    )
-
-
-
-    styles = getSampleStyleSheet()
-
-
-    content = []
-
-
-
-
-    content.append(
-
-        Paragraph(
-            "ForensiQ Digital Forensics Investigation Report",
-            styles["Title"]
-        )
-
-    )
-
-
-    content.append(
-        Spacer(1,20)
-    )
-
-
-
-
-
-    # Case Section
-
-
-    content.append(
-
-        Paragraph(
-            "CASE INFORMATION",
-            styles["Heading2"]
-        )
-
-    )
-
-
-    case_data = [
-
-        ["Case Name", case_name],
-
-        [
-            "Investigator",
-            case.investigator
-            if case
-            else "N/A"
-        ],
-
-        [
-            "Case Type",
-            case.case_type
-            if case
-            else "N/A"
-        ],
-
-
-        [
-            "Priority",
-            case.priority
-            if case
-            else "N/A"
-        ],
-
-
-        [
-            "Status",
-            case.status
-            if case
-            else "N/A"
-        ],
-
-    ]
-
-
-
-    table = Table(case_data)
-
-
-    table.setStyle(
-
-        TableStyle([
-
-            ("GRID",(0,0),(-1,-1),0.5,None)
-
-        ])
-
-    )
-
-
-    content.append(table)
-
-
-
-    content.append(
-        Spacer(1,20)
-    )
-
-
-
-
-
-
-
-    # Evidence Section
-
-
-    content.append(
-
-        Paragraph(
-            "EVIDENCE INFORMATION",
-            styles["Heading2"]
-        )
+        report_format
 
     )
 
 
 
-    evidence_data = [
+    # Generate Report
 
 
-        [
-            "File Name",
-            evidence.filename
-            if evidence
-            else evidence_name
-        ],
+    if report_format == "PDF":
 
 
-        [
-            "File Type",
-            evidence.filetype
-            if evidence
-            else "N/A"
-        ],
+        generate_pdf(
 
+            filepath,
 
-        [
-            "File Size",
-            evidence.filesize
-            if evidence
-            else "N/A"
-        ],
+            case,
 
+            evidence,
 
-        [
-            "SHA-256",
-            evidence.sha256
-            if evidence
-            else "N/A"
-        ],
+            report,
 
-
-        [
-            "Integrity Status",
-            "VERIFIED"
-        ]
-
-
-    ]
-
-
-
-    table2 = Table(
-        evidence_data
-    )
-
-
-    table2.setStyle(
-
-        TableStyle([
-
-            ("GRID",(0,0),(-1,-1),0.5,None)
-
-        ])
-
-    )
-
-
-
-    content.append(table2)
-
-
-
-    content.append(
-        Spacer(1,20)
-    )
-
-
-
-
-
-
-    # Footer
-
-
-    content.append(
-
-        Paragraph(
-
-            f"Generated By : ForensiQ System<br/>"
-            f"Generated On : {datetime.now()}",
-
-            styles["Normal"]
+            analysis_result
 
         )
 
-    )
+
+
+    elif report_format == "JSON":
+
+
+        generate_json(
+
+            filepath,
+
+            case,
+
+            evidence,
+
+            report,
+
+            analysis_result
+
+        )
 
 
 
-    doc.build(content)
+    elif report_format == "CSV":
+
+
+        generate_csv(
+
+            filepath,
+
+            case,
+
+            evidence,
+
+            report,
+
+            analysis_result
+
+        )
 
 
 
+    elif report_format == "HTML":
 
+
+        generate_html(
+
+            filepath,
+
+            case,
+
+            evidence,
+
+            report,
+
+            analysis_result
+
+        )
+
+
+    else:
+
+        raise Exception(
+            "Unsupported report format"
+        )
+
+
+
+    # Save path
 
     report.file_path = filepath
 
@@ -391,14 +266,105 @@ def create_report(
 
 
 
-
-
-# View PDF
+# ==============================
+# VIEW REPORT
+# ==============================
 
 @router.get("/view/{report_id}")
 def view_report(
+
     report_id:int,
-    db:Session=Depends(get_db)
+
+    db:Session = Depends(get_db)
+
+):
+
+
+    report = (
+
+        db.query(Report)
+
+        .filter(
+            Report.id == report_id
+        )
+
+        .first()
+
+    )
+
+
+
+    if not report:
+
+        return {
+            "error":"Report not found"
+        }
+
+
+
+    extension = (
+
+        report.file_path
+
+        .split(".")[-1]
+
+        .lower()
+
+    )
+
+
+
+    media_types = {
+
+
+        "pdf":
+        "application/pdf",
+
+
+        "json":
+        "application/json",
+
+
+        "csv":
+        "text/csv",
+
+
+        "html":
+        "text/html"
+
+    }
+
+
+
+    return FileResponse(
+
+        path=report.file_path,
+
+        media_type=media_types.get(
+
+            extension,
+
+            "application/octet-stream"
+
+        )
+
+    )
+
+
+
+
+
+# ==============================
+# DOWNLOAD REPORT
+# ==============================
+
+@router.get("/download/{report_id}")
+def download_report(
+
+    report_id:int,
+
+    db:Session = Depends(get_db)
+
 ):
 
 
@@ -426,45 +392,7 @@ def view_report(
 
     return FileResponse(
 
-        report.file_path,
-
-        media_type="application/pdf"
-
-    )
-
-
-
-
-
-
-
-# Download PDF
-
-@router.get("/download/{report_id}")
-def download_report(
-    report_id:int,
-    db:Session=Depends(get_db)
-):
-
-
-    report = (
-
-        db.query(Report)
-
-        .filter(
-            Report.id == report_id
-        )
-
-        .first()
-
-    )
-
-
-    return FileResponse(
-
-        report.file_path,
-
-        media_type="application/pdf",
+        path=report.file_path,
 
         filename=os.path.basename(
             report.file_path
@@ -476,13 +404,17 @@ def download_report(
 
 
 
-
-# Delete Report
+# ==============================
+# DELETE REPORT
+# ==============================
 
 @router.delete("/{report_id}")
 def delete_report(
+
     report_id:int,
-    db:Session=Depends(get_db)
+
+    db:Session = Depends(get_db)
+
 ):
 
 
@@ -497,6 +429,14 @@ def delete_report(
         .first()
 
     )
+
+
+
+    if not report:
+
+        return {
+            "message":"Report not found"
+        }
 
 
 
@@ -517,5 +457,8 @@ def delete_report(
 
 
     return {
+
         "message":"Report deleted"
+
     }
+
