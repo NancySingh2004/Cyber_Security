@@ -174,10 +174,11 @@ def analyze_file(file_path):
 
         # WhatsApp Database
 
-        if "wa_contacts" in tables:
+        if ("wa_contacts" in tables or "chat" in tables and "jid" in tables and "message" in tables):
 
 
             result["analysis"]["whatsapp_details"] = (
+
 
                 analyze_whatsapp(
                     file_path
