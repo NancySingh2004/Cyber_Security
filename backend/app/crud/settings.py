@@ -2,9 +2,7 @@ from sqlalchemy.orm import Session
 from app.models.settings import Settings
 
 
-# ---------------------------------
-# GET SETTINGS
-# ---------------------------------
+
 
 def get_settings(db: Session):
 
@@ -21,9 +19,7 @@ def get_settings(db: Session):
     return settings
 
 
-# ---------------------------------
-# UPDATE SETTINGS
-# ---------------------------------
+
 
 def update_settings(db: Session, data: dict):
 
